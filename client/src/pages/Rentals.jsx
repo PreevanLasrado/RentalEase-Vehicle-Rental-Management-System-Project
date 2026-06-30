@@ -498,7 +498,7 @@ export default function Rentals() {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/vehicles");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/vehicles`);
         const data = await res.json();
 
         setCars(data);
@@ -549,7 +549,7 @@ export default function Rentals() {
         end.setHours(drop.hours, drop.minutes);
 
         const res = await fetch(
-          `http://localhost:5000/api/bookings/availability?startDate=${start.toISOString()}&endDate=${end.toISOString()}`
+          `${import.meta.env.VITE_API_URL}/api/bookings/availability?startDate=${start.toISOString()}&endDate=${end.toISOString()}`
         );
 
         const data = await res.json();
@@ -604,7 +604,7 @@ export default function Rentals() {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/wishlist", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/wishlist`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -658,7 +658,7 @@ export default function Rentals() {
       }
 
       // 🔗 backend call
-      await fetch("http://localhost:5000/api/wishlist/toggle", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/wishlist/toggle`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -314,7 +314,7 @@ const BookingModal = ({ car, onClose, carDates, setCarDates, oldCancelledBooking
     try {
       setIsProcessing(true);
 
-      const res = await fetch("http://localhost:5000/api/bookings", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -344,7 +344,7 @@ const BookingModal = ({ car, onClose, carDates, setCarDates, oldCancelledBooking
       // DELETE OLD CANCELLED BOOKING AFTER SUCCESSFUL REBOOK
       if (oldCancelledBookingId) {
         await fetch(
-          `http://localhost:5000/api/bookings/${oldCancelledBookingId}`,
+          `${import.meta.env.VITE_API_URL}/api/bookings/${oldCancelledBookingId}`,
           {
             method: "DELETE",
             headers: {

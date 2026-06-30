@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaCheckCircle, FaHourglassHalf, FaTimesCircle  } from "react-icons/fa";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import FAQ from "../components/FAQ";
-const API_URL = "http://localhost:5000/api";
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 const plansData = {
   monthly: [

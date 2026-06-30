@@ -62,7 +62,7 @@ const Customers = () => {
     const fetchDashboardStats = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/dashboard/stats"
+          `${import.meta.env.VITE_API_URL}/api/dashboard/stats`
         );
 
         const data = await response.json();
@@ -80,7 +80,7 @@ const Customers = () => {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:5000/api/users",
+          `${import.meta.env.VITE_API_URL}/api/users`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -115,7 +115,7 @@ const Customers = () => {
         )?.token;
 
         const res = await axios.get(
-          "http://localhost:5000/api/contacts",
+          `${import.meta.env.VITE_API_URL}/api/contacts`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -184,7 +184,7 @@ const Customers = () => {
     try {
 
       await fetch(
-        `http://localhost:5000/api/users/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
         {
           method: "DELETE",
         }
@@ -205,7 +205,7 @@ const Customers = () => {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/users/${userId}/block`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/block`,
         {
           method: "PUT",
         }
@@ -267,7 +267,7 @@ const Customers = () => {
       )?.token;
 
       await axios.put(
-        `http://localhost:5000/api/contacts/${id}/read`,
+        `${import.meta.env.VITE_API_URL}/api/contacts/${id}/read`,
         {},
         {
           headers: {

@@ -89,7 +89,7 @@ const About = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/stats")
+    fetch(`${import.meta.env.VITE_API_URL}/api/stats`)
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error(err));

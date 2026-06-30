@@ -157,7 +157,7 @@ const CalendarModal = ({ car, onClose, onSave, startDate, endDate, setStartDate,
     const fetchBookings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/bookings/car/${car._id}`
+          `${import.meta.env.VITE_API_URL}/api/bookings/car/${car._id}`
         );
 
         const data = await res.json();

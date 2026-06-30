@@ -109,7 +109,7 @@ const Contact = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/contacts",
+        `${import.meta.env.VITE_API_URL}/api/contacts`,
         {
           name: form.name,
           email: form.email,

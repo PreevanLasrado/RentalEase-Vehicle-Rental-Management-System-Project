@@ -78,7 +78,7 @@ const Fleet = () => {
       try {
 
         const { data } = await axios.get(
-          "http://localhost:5000/api/vehicles"
+          `${import.meta.env.VITE_API_URL}/api/vehicles`
         );
 
         setVehicles(data);
@@ -248,7 +248,7 @@ const Fleet = () => {
         try {
 
         const response = await fetch(
-            "http://localhost:5000/api/dashboard/stats"
+            `${import.meta.env.VITE_API_URL}/api/dashboard/stats`
         );
 
         const data = await response.json();
@@ -268,7 +268,7 @@ const Fleet = () => {
         )?.token;
 
         const res = await axios.get(
-          "http://localhost:5000/api/contacts",
+          `${import.meta.env.VITE_API_URL}/api/contacts`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -326,7 +326,7 @@ const Fleet = () => {
       )?.token;
 
       await axios.put(
-        `http://localhost:5000/api/contacts/${id}/read`,
+        `${import.meta.env.VITE_API_URL}/api/contacts/${id}/read`,
         {},
         {
           headers: {
@@ -1091,7 +1091,7 @@ const Fleet = () => {
                               );
 
                               const response = await fetch(
-                                `http://localhost:5000/api/vehicles/${vehicle._id}`,
+                                `${import.meta.env.VITE_API_URL}/api/vehicles/${vehicle._id}`,
                                 {
                                   method: "DELETE",
 
@@ -1631,7 +1631,7 @@ const Fleet = () => {
                         );
 
                         const response = await fetch(
-                          `http://localhost:5000/api/vehicles/${selectedCar._id}`,
+                          `${import.meta.env.VITE_API_URL}/api/vehicles/${selectedCar._id}`,
                           {
                             method: "PUT",
 

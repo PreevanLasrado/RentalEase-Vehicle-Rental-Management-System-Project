@@ -139,7 +139,7 @@ const Dashboard = () => {
         try {
 
         const response = await fetch(
-            "http://localhost:5000/api/dashboard/stats"
+            `${import.meta.env.VITE_API_URL}/api/dashboard/stats`
         );
 
         const data = await response.json();
@@ -159,7 +159,7 @@ const Dashboard = () => {
         )?.token;
 
         const res = await axios.get(
-          "http://localhost:5000/api/contacts",
+          `${import.meta.env.VITE_API_URL}/api/contacts`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -224,7 +224,7 @@ const Dashboard = () => {
       )?.token;
 
       await axios.put(
-        `http://localhost:5000/api/contacts/${id}/read`,
+        `${import.meta.env.VITE_API_URL}/api/contacts/${id}/read`,
         {},
         {
           headers: {

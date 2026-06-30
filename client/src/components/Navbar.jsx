@@ -61,7 +61,7 @@ const Navbar = () => {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/wishlist", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/wishlist`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
