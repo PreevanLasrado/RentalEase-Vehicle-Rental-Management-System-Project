@@ -330,7 +330,7 @@ export default function Rentals() {
   // );
 
   const filteredCars = useMemo(() => {
-    return cars
+    return (Array.isArray(cars) ? cars : [])
       .filter((car) => {
         // 🔹 Availability
         const isAvailable =
@@ -495,15 +495,45 @@ export default function Rentals() {
 
   }, [location.state, cars]);
 
+  // useEffect(() => {
+  //   const fetchCars = async () => {
+  //     try {
+  //       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/vehicles`);
+  //       const data = await res.json();
+
+  //       setCars(data);
+  //     } catch (err) {
+  //       console.error("Error fetching vehicles", err);
+  //     }
+  //   };
+
+  //   fetchCars();
+  // }, []);
+
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/vehicles`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/vehicles`
+        );
+
+        if (!res.ok) {
+          console.error("Vehicle API Error:", res.status);
+          setCars([]);
+          return;
+        }
+
         const data = await res.json();
 
-        setCars(data);
+        if (Array.isArray(data)) {
+          setCars(data);
+        } else {
+          console.error("Invalid vehicles response:", data);
+          setCars([]);
+        }
       } catch (err) {
-        console.error("Error fetching vehicles", err);
+        console.error("Error fetching vehicles:", err);
+        setCars([]);
       }
     };
 
