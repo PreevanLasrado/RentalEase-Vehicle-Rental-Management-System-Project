@@ -528,7 +528,7 @@ export default function Rentals() {
         if (Array.isArray(data)) {
           setCars(data);
         } else {
-          console.error("Invalid vehicles response:", data);
+          console.error("Unexpected response:", data);
           setCars([]);
         }
       } catch (err) {
