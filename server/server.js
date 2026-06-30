@@ -10,12 +10,7 @@ const { protect } = require("./middleware/authMiddleware");
 dotenv.config();
 
 // Connect to MongoDB
-// connectDB();
-const startServer = async () => {
-  await connectDB();
-};
-
-startServer();
+connectDB();
 
 const app = express();
 

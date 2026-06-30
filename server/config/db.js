@@ -43,26 +43,31 @@
 
 const mongoose = require("mongoose");
 
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+let isConnected = false;
 
 const connectDB = async () => {
-  if (cached.conn) {
-    return cached.conn;
+  // Reuse existing connection
+  if (isConnected) {
+    return;
   }
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(process.env.MONGO_URI, {
-      bufferCommands: false,
+  try {
+    console.log("Connecting to MongoDB...");
+
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 10000,
+      family: 4,
     });
-  }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+    isConnected = conn.connection.readyState === 1;
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error("Database connection error:");
+    console.error(error);
+
+    throw error; // Let Vercel return a proper 500 response
+  }
 };
 
 module.exports = connectDB;
