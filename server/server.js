@@ -20,7 +20,11 @@ const app = express();
 // CORS (allow frontend)
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"], // change if deployed
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://vehicle-rental-frontend-sandy.vercel.app",
+    ],
     credentials: true,
   })
 );
